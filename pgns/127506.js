@@ -1,6 +1,6 @@
 const { chooseField } = require('../utils.js')
 
-function instance (n2k) {
+function instance(n2k) {
   return chooseField(n2k, 'DC Instance', 'Instance')
 }
 
@@ -14,13 +14,13 @@ module.exports = [
     },
     node: function (n2k) {
       return 'electrical.batteries.' + instance(n2k) + '.capacity.stateOfCharge'
-    }
+    },
   },
   {
     source: 'State of Health',
     node: function (n2k) {
       return 'electrical.batteries.' + instance(n2k) + '.capacity.stateOfHealth'
-    }
+    },
   },
   {
     allowNull: true,
@@ -36,11 +36,11 @@ module.exports = [
     },
     node: function (n2k) {
       return 'electrical.batteries.' + instance(n2k) + '.capacity.timeRemaining'
-    }
+    },
   } /*, {
     source: 'Ripple Voltage',
     node: function(n2k) {
       return 'electrical.batteries.' + instance(n2k) + '.voltage.ripple'
     }
-  } */
+  } */,
 ]
