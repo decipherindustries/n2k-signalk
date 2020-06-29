@@ -8,7 +8,7 @@ module.exports = [
     value: function (n2k) {
       var rpm = Number(chooseField(n2k, 'Engine Speed', 'Speed'))
       return rpm / 60.0
-    }
+    },
   },
   {
     node: function (n2k) {
@@ -25,7 +25,7 @@ module.exports = [
     },
     filter: function (n2k) {
       return typeof n2k.fields['Tilt/Trim'] !== 'undefined'
-    }
+    },
   },
   {
     node: function (n2k) {
@@ -33,7 +33,7 @@ module.exports = [
     },
     value: function (n2k) {
       const hpa = Number(n2k.fields['Boost Pressure'])
-      return isNaN(hpa) ? null : hpa * 100;
-    }
-  }
+      return isNaN(hpa) ? null : hpa * 100
+    },
+  },
 ]
