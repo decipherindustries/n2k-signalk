@@ -8,14 +8,15 @@ function instance(n2k) {
 function makeMapper(fieldName, group) {
   return {
     node: (n2k) => {
-      let prefix = 'extended.'
+      let prefix = 'ExtendedStatus.'
+      let name = fieldName.replace(/\s/g, '')
 
-      if (fieldName === 'Flavor' || fieldName === 'Instance') {
+      if (fieldName.toLowerCase() === 'flavor' || fieldName.toLowerCase() === 'instance') {
         prefix = ''
         fieldName = fieldName.toLowerCase()
       }
 
-      return `electrical.batteries.${instance(n2k)}.${prefix}${fieldName.replace(/\s/g, '')}`
+      return `electrical.batteries.${instance(n2k)}.${prefix}${name}`
     },
     value: (n2k) => n2k.fields[fieldName],
   }
