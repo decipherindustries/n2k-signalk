@@ -13,7 +13,7 @@ function makeMapper(fieldName, group) {
 
       if (fieldName.toLowerCase() === 'flavor' || fieldName.toLowerCase() === 'instance') {
         prefix = ''
-        fieldName = fieldName.toLowerCase()
+        name = fieldName.toLowerCase()
       }
 
       return `electrical.batteries.${instance(n2k)}.${prefix}${name}`
