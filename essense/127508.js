@@ -13,6 +13,9 @@ function makeMapper(fieldName, group) {
 }
 
 const overrides = [
+  // Flavor & Instance
+  makeMapper('Instance', 'All')
+  makeMapper('Flavor', 'All')
   // DC Source Status 3
   makeMapper('Remaining Relative Capacity', 'DC Source Status 3'),
   makeMapper('Remaining Discharge Capacity', 'DC Source Status 3'),
