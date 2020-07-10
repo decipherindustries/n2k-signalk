@@ -1,21 +1,21 @@
 const parent = require('../pgns/127508')
 const { chooseField } = require('../utils.js')
 
-function instance(n2k) {
+function instance (n2k) {
   return chooseField(n2k, 'Battery Instance', 'Instance')
 }
 
-function makeMapper(fieldName, group) {
+function makeMapper (fieldName, group) {
   return {
     node: (n2k) => `electrical.batteries.${instance(n2k)}.${fieldName.replace(/\s/g, '')}`,
-    value: (n2k) => n2k.fields[fieldName],
+    value: (n2k) => n2k.fields[fieldName]
   }
 }
 
 const overrides = [
   // Flavor & Instance
-  makeMapper('Instance', 'All')
-  makeMapper('Flavor', 'All')
+  makeMapper('Instance', 'All'),
+  makeMapper('Flavor', 'All'),
   // DC Source Status 3
   makeMapper('Remaining Relative Capacity', 'DC Source Status 3'),
   makeMapper('Remaining Discharge Capacity', 'DC Source Status 3'),
@@ -60,7 +60,7 @@ const overrides = [
   makeMapper('Cold Temperature State', 'Lithionics Proprietary'),
   makeMapper('AUXIN1 State', 'Lithionics Proprietary'),
   makeMapper('Charge Disable State', 'Lithionics Proprietary'),
-  makeMapper('Over Current State', 'Lithionics Proprietary'),
+  makeMapper('Over Current State', 'Lithionics Proprietary')
 ]
 
 module.exports = [...parent, ...overrides]
