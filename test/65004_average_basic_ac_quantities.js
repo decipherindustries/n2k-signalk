@@ -21,15 +21,15 @@ describe('65004 Average Basic AC Quantities', function () {
       }`)
     )
 
-    tree.should.have.nested.property('electrical.ac.rmsVoltage.lineLine.value', 0)
+    tree.should.have.nested.property('electrical.ac.phase.a.lineLineVoltage.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.rmsVoltage.lineNeutral.value', 0)
+    tree.should.have.nested.property('electrical.ac.phase.a.lineNeutralVoltage.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.rmsVoltage.current.value', 0)
+    tree.should.have.nested.property('electrical.ac.phase.a.current.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.frequency.value', 0)
+    tree.should.have.nested.property('electrical.ac.phase.a.frequency.value', 0)
 
-    // @FIXME
-    // tree.should.be.validSignalKVesselIgnoringIdentity
+  // @FIXME
+  // tree.should.be.validSignalKVesselIgnoringIdentity
   })
 })

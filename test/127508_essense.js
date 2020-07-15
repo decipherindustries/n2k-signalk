@@ -3,6 +3,29 @@ chai.Should()
 chai.use(require('chai-things'))
 chai.use(require('@signalk/signalk-schema').chaiModule)
 
+const runTest = (PGN, done) => {
+  const tree = require('./testMapper').toNested(PGN)
+
+  for (const name of Object.keys(PGN.fields)) {
+    if (name === 'Instance') {
+      continue
+    }
+
+    const value = PGN.fields[name]
+    let prefix = 'ExtendedStatus.'
+    let fieldName = name.replace(/\s/g, '')
+
+    if (name.toLowerCase() === 'flavor') {
+      prefix = ''
+      fieldName = name.toLowerCase()
+    }
+
+    tree.should.have.nested.property(`electrical.batteries.1.${prefix}${fieldName}.value`, value)
+  }
+
+  done()
+}
+
 describe('127508 EsSense.AI fields', () => {
   it('DC Source Status 3', (done) => {
     const PGN = {
@@ -15,23 +38,11 @@ describe('127508 EsSense.AI fields', () => {
       fields: {
         Instance: 1,
         'Remaining Discharge Capacity': 100,
-        'Remaining Relative Capacity': 240,
-      },
-    }
-
-    const tree = require('./testMapper').toNested(PGN)
-
-    for (const name of Object.keys(PGN.fields)) {
-      const value = PGN.fields[name]
-
-      if (name === 'Instance') {
-        continue
+        'Remaining Relative Capacity': 240
       }
-
-      tree.should.have.nested.property(`electrical.batteries.1.${name.replace(/\s/g, '')}.value`, value)
     }
 
-    done()
+    runTest(PGN, done)
   })
 
   it('DC Source Status 4', (done) => {
@@ -47,23 +58,11 @@ describe('127508 EsSense.AI fields', () => {
         'Desired Charge State': 1,
         'Desired Charge Voltage': 27,
         'Desired Charge Current': 100,
-        'Battery Type': 3,
-      },
-    }
-
-    const tree = require('./testMapper').toNested(PGN)
-
-    for (const name of Object.keys(PGN.fields)) {
-      const value = PGN.fields[name]
-
-      if (name === 'Instance') {
-        continue
+        'Battery Type': 3
       }
-
-      tree.should.have.nested.property(`electrical.batteries.1.${name.replace(/\s/g, '')}.value`, value)
     }
 
-    done()
+    runTest(PGN, done)
   })
 
   it('DC Source Status 6', (done) => {
@@ -79,23 +78,11 @@ describe('127508 EsSense.AI fields', () => {
         'High Voltage Alarm Status': 1,
         'High Voltage Disconnect Status': 0,
         'Low Voltage Alarm Status': 1,
-        'Low Voltage Disconnect Status': 0,
-      },
-    }
-
-    const tree = require('./testMapper').toNested(PGN)
-
-    for (const name of Object.keys(PGN.fields)) {
-      const value = PGN.fields[name]
-
-      if (name === 'Instance') {
-        continue
+        'Low Voltage Disconnect Status': 0
       }
-
-      tree.should.have.nested.property(`electrical.batteries.1.${name.replace(/\s/g, '')}.value`, value)
     }
 
-    done()
+    runTest(PGN, done)
   })
 
   it('DC Source Status 11', (done) => {
@@ -113,23 +100,11 @@ describe('127508 EsSense.AI fields', () => {
         'Charge Detected': 0,
         'Reserve Status': 0,
         'Full Capacity': 5000,
-        'DC Power': 1500,
-      },
-    }
-
-    const tree = require('./testMapper').toNested(PGN)
-
-    for (const name of Object.keys(PGN.fields)) {
-      const value = PGN.fields[name]
-
-      if (name === 'Instance') {
-        continue
+        'DC Power': 1500
       }
-
-      tree.should.have.nested.property(`electrical.batteries.1.${name.replace(/\s/g, '')}.value`, value)
     }
 
-    done()
+    runTest(PGN, done)
   })
 
   it('Lithionics Proprietary', (done) => {
@@ -165,22 +140,10 @@ describe('127508 EsSense.AI fields', () => {
         'Cold Temperature State': 1,
         'AUXIN1 State': 0,
         'Charge Disable State': 1,
-        'Over Current State': 0,
-      },
-    }
-
-    const tree = require('./testMapper').toNested(PGN)
-
-    for (const name of Object.keys(PGN.fields)) {
-      const value = PGN.fields[name]
-
-      if (name === 'Instance') {
-        continue
+        'Over Current State': 0
       }
-
-      tree.should.have.nested.property(`electrical.batteries.1.${name.replace(/\s/g, '')}.value`, value)
     }
 
-    done()
+    runTest(PGN, done)
   })
 })

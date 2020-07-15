@@ -21,15 +21,15 @@ describe('65017 Utility Average Basic AC Quantities', function () {
       }`)
     )
 
-    tree.should.have.nested.property('electrical.ac.utility.rmsVoltage.lineLine.value', 0)
+    tree.should.have.nested.property('electrical.ac.utility.lineLineVoltage.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.utility.rmsVoltage.lineNeutral.value', 0)
+    tree.should.have.nested.property('electrical.ac.utility.lineNeutralVoltage.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.utility.rmsVoltage.current.value', 0)
+    tree.should.have.nested.property('electrical.ac.utility.current.value', 0)
 
     tree.should.have.nested.property('electrical.ac.utility.frequency.value', 0)
 
-    // @FIXME
-    // tree.should.be.validSignalKVesselIgnoringIdentity
+  // @FIXME
+  // tree.should.be.validSignalKVesselIgnoringIdentity
   })
 })

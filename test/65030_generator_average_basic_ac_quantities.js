@@ -21,15 +21,15 @@ describe('65030 Generator Average Basic AC Quantities', function () {
       }`)
     )
 
-    tree.should.have.nested.property('electrical.ac.generator.rmsVoltage.lineLine.value', 0)
+    tree.should.have.nested.property('electrical.ac.generator.lineLineVoltage.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.generator.rmsVoltage.lineNeutral.value', 0)
+    tree.should.have.nested.property('electrical.ac.generator.lineNeutralVoltage.value', 0)
 
-    tree.should.have.nested.property('electrical.ac.generator.rmsVoltage.current.value', 0)
+    tree.should.have.nested.property('electrical.ac.generator.current.value', 0)
 
     tree.should.have.nested.property('electrical.ac.generator.frequency.value', 0)
 
-    // @FIXME
-    // tree.should.be.validSignalKVesselIgnoringIdentity
+  // @FIXME
+  // tree.should.be.validSignalKVesselIgnoringIdentity
   })
 })

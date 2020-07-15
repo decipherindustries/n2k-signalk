@@ -1,5 +1,4 @@
 module.exports = {
-  127508: require('./127508'),
   65004: require('./65004'),
   65005: require('./65005'),
   65008: require('./65008'),
@@ -12,4 +11,6 @@ module.exports = {
   65028: require('./65028'),
   65029: require('./65029'),
   65030: require('./65030'),
+  127508: require('./127508'),
+  127513: require('./127513')
 }
