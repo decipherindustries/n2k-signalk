@@ -1,23 +1,4 @@
 /*
-{
-   "timestamp":"2020-07-15-12:54:19.793",
-   "prio":6,
-   "src":250,
-   "dst":255,
-   "pgn":127513,
-   "description":"Battery Configuration Status",
-   "fields":{
-      x "Instance":16,
-      x "Battery Type":"Gel",
-      x "Supports Equalization":0, NOT PRESENT IN SK
-      x "Nominal Voltage":"12", NOT PRESENT IN SK
-      x "Capacity":0,
-      x "Temperature Coefficient":19, NOT PRESENT IN SK
-      x "Peukert Exponent":0.002, NOT PRESENT IN SK
-      x "Charge Efficiency Factor":0, NOT PRESENT IN SK
-   }
-}
-
 https://github.com/SignalK/specification/issues/578
 */
 
@@ -29,8 +10,12 @@ function instance (n2k) {
 
 module.exports = [
   {
-    node: (n2k) => `electrical.batteries.${instance(n2k)}.chemistry`,
+    node: (n2k) => `electrical.batteries.${instance(n2k)}.type`,
     value: (n2k) => n2k.fields['Battery Type']
+  },
+  {
+    node: (n2k) => `electrical.batteries.${instance(n2k)}.chemistry`,
+    value: (n2k) => n2k.fields['Chemistry']
   },
   {
     node: (n2k) => `electrical.batteries.${instance(n2k)}.capacity.nominal`,
