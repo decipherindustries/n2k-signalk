@@ -13,6 +13,7 @@ describe('127513 Battery Configuration Status', () => {
         'Supports Equalization': 0,
         'Nominal Voltage': 12,
         'Capacity': 0,
+        'Chemistry': 'Li',
         'Temperature Coefficient': 19,
         'Peukert Exponent': 0.002,
         'Charge Efficiency Factor': 0
@@ -21,7 +22,8 @@ describe('127513 Battery Configuration Status', () => {
 
     const tree = require('./testMapper').toNested(PGN)
 
-    tree.should.have.nested.property('electrical.batteries.16.chemistry.value', 'Gel')
+    tree.should.have.nested.property('electrical.batteries.16.chemistry.value', 'Li')
+    tree.should.have.nested.property('electrical.batteries.16.type.value', 'Gel')
     tree.should.have.nested.property('electrical.batteries.16.capacity.nominal.value', 0)
     tree.should.have.nested.property('electrical.batteries.16.voltage.nominal.value', 12)
     tree.should.have.nested.property('electrical.batteries.16.temperature.coefficient.value', 19)
