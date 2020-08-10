@@ -23,7 +23,20 @@ module.exports = [
   },
   {
     node: (n2k) => `electrical.batteries.${instance(n2k)}.voltage.nominal`,
-    value: (n2k) => n2k.fields['Nominal Voltage']
+    value: (n2k) => {
+      let value = n2k.fields['Nominal Voltage']
+
+      if (typeof value === 'string' && value.trim().toUpperCase().endsWith('V')) {
+        value = value.slice(0, -1)
+        value = parseInt(value, 10)
+      }
+
+      if (typeof value !== 'number' || isNaN(value)) {
+        return null
+      }
+
+      return value
+    }
   },
   {
     node: (n2k) => `electrical.batteries.${instance(n2k)}.temperature.coefficient`,
