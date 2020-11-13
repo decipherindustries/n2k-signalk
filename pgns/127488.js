@@ -33,7 +33,7 @@ module.exports = [
     },
     value: function (n2k) {
       const hpa = Number(n2k.fields['Boost Pressure'])
-      return isNaN(hpa) ? null : hpa * 100;
+      return isNaN(hpa) ? null : hpa;
     }
   }
 ]
